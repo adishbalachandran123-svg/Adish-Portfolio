@@ -1,3 +1,0 @@
-Replace this file with your actual resume PDF.
-Save it as: public/resume.pdf
-The "Download Resume" button in the Hero section links to /resume.pdf
