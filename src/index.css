@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --x: 50%;
+  --y: 50%;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply bg-ink-950 text-paper font-body antialiased;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% -10%, rgba(139,127,255,0.12), transparent),
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(79,216,255,0.10), transparent);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(79, 216, 255, 0.25);
+  color: #E9EDF5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #080B10;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A2233;
+  border-radius: 999px;
+  border: 2px solid #080B10;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #232C41;
+}
+
+/* Section eyebrow / mono label motif */
+.eyebrow {
+  @apply font-mono text-xs tracking-[0.25em] uppercase text-cyan;
+}
+
+.eyebrow::before {
+  content: '// ';
+  color: theme('colors.mute');
+}
+
+.section-heading {
+  @apply font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-paper tracking-tight;
+}
+
+.card-surface {
+  @apply relative rounded-2xl border border-white/[0.07] backdrop-blur-sm;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.glass {
+  background: rgba(13, 17, 25, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.grid-overlay {
+  background-image: theme('backgroundImage.grid-lines');
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #4FD8FF;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Custom cursor (desktop only, applied via JS toggling body class) */
+.cursor-enabled {
+  cursor: none;
+}
+.cursor-enabled a,
+.cursor-enabled button,
+.cursor-enabled [role='button'] {
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  .cursor-enabled {
+    cursor: auto;
+  }
+}
+
+/* Reduced motion: kill decorative animation, keep instant transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
